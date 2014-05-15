@@ -1,5 +1,14 @@
 #!/bin/bash
 
+EXPECTED_ARGS=1
+E_BADARGS=65
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` {spark/mesos master}"
+  exit $E_BADARGS
+fi
+
 source /usr/share/spark/conf/spark-env.sh
 
 #export JAVA_HOME=/usr/java/jdk1.7.0_45-cloudera
@@ -8,6 +17,6 @@ source /usr/share/spark/conf/spark-env.sh
 CLASSPATH=$CLASSPATH:$SPARK_HOME/lib/*
 
 # app jar:
-CLASSPATH=$CLASSPATH:target/word-count-0.1-SNAPSHOT.jar
+CLASSPATH=$CLASSPATH:/mnt/share/spark/spark-word-count/target/word-count-0.1-SNAPSHOT.jar
 
-$JAVA_HOME/bin/java -cp $CLASSPATH -Dspark.master=zk://147.32.232.88:2181/mesos spark.JavaWordCount /mnt/share/datasets/words-big.txt 2
+$JAVA_HOME/bin/java -cp $CLASSPATH -Dspark.master=$1 spark.JavaWordCount /mnt/share/datasets/words-big.txt 2
