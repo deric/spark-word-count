@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source /usr/share/spark/conf/spark-env.sh
+
+#export JAVA_HOME=/usr/java/jdk1.7.0_45-cloudera
+
+# system jars:
+CLASSPATH=$CLASSPATH:$SPARK_HOME/lib/*
+
+# app jar:
+CLASSPATH=$CLASSPATH:target/word-count-0.1-SNAPSHOT.jar
+
+$JAVA_HOME/bin/java -cp $CLASSPATH -Dspark.master=zk://147.32.232.88:2181/mesos spark.JavaWordCount /mnt/share/datasets/words-big.txt 2

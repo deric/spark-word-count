@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mvn install:install-file -Dfile=$1 -DgroupId=org.apache.spark -DartifactId=spark-core_2.10 -Dversion=1.0.0-dev -Dpackaging=jar
