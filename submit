@@ -13,5 +13,6 @@ CLASSPATH=$CLASSPATH:/mnt/share/spark/spark-word-count/target/word-count-0.1-SNA
 
 /usr/share/spark/bin/spark-submit \
      --class spark.JavaWordCount \
+     --driver-class-path /mnt/share/spark/spark-word-count/target/word-count-0.1-SNAPSHOT.jar \
      --jars /mnt/share/spark/spark-word-count/target/word-count-0.1-SNAPSHOT.jar \
       /mnt/share/spark/spark-word-count/target/word-count-0.1-SNAPSHOT.jar /mnt/share/datasets/words-big.txt 2 \
